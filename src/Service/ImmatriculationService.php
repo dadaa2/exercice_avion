@@ -16,20 +16,18 @@ class ImmatriculationService
     // Génère une immatriculation aléatoire dans le format F-AAAA à F-ZZZZ
     public function generateImmatriculation(): string
     {
-        $letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $letters = range('A', 'Z');
+    do {
+        $randomLetters = '';
+        for ($i = 0; $i < 4; $i++) {
+            $randomLetters .= $letters[random_int(0, count($letters) - 1)];
+        }
+        $immatriculation = 'F-' . $randomLetters;
 
-        do {
-            $randomLetters = '';
-            for ($i = 0; $i < 4; $i++) {
-                $randomLetters .= $letters[random_int(0, strlen($letters) - 1)];
-            }
+        // Vérifier si cette immatriculation existe déjà
+        $existingAvion = $this->em->getRepository(Avion::class)->findOneBy(['immatriculation' => $immatriculation]);
+    } while ($existingAvion !== null);
 
-            $immatriculation = 'F-' . $randomLetters;
-
-            // Vérifier si cette immatriculation existe déjà
-            $existingAvion = $this->em->getRepository(Avion::class)->findOneBy(['immatriculation' => $immatriculation]);
-        } while ($existingAvion !== null);
-
-        return $immatriculation;
+    return $immatriculation;
     }
 }

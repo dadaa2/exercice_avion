@@ -51,12 +51,31 @@ class AppFixtures extends Fixture
 
         $listeIntervention = [];
         $avions = [];
-        for ($i = 0; $i < 20; $i++) {
+        //Générer un nombre avion
+        for ($i = 0; $i < 200; $i++) {
+            $immatriculation = $this->immatriculationService->generateImmatriculation();
+            if (array_key_exists($immatriculation, $avions)) {
+                continue; // Passer à la prochaine génération
+            }
+            
+            do {
+                $immatriculation = $this->immatriculationService->generateImmatriculation();
+            } while (array_key_exists($immatriculation, $avions));
+
+            ##Boucle qui génére, check dans bdd et dans le tableau de la creation
+            #do {
+            #    $existingAvion = $manager->getRepository(Avion::class)->findOneBy(['immatriculation' => $immatriculation]);
+            #    $isDuplicate = $existingAvion !== null || in_array($immatriculation, $checkImmatriculation);
+            #} while ($isDuplicate);
+            #  
+            #$checkImmatriculation[] = $immatriculation;
+
             $avion = (new Avion())
-                ->setImmatriculation($this->immatriculationService->generateImmatriculation())
+                ->setImmatriculation($immatriculation)
                 ->setAvionCompanie($companies[rand(0, count($companies) - 1)])
                 ->setAvionStatue($statues[rand(0, count($statues) - 1)]);
-                $avions[] = $avion; // Ajoute l'avion dans le tableau
+                $avions[$immatriculation] = $avion; // Ajoute l'avion dans le tableau
+
 
             $siIntervention = rand(0, 1);
             if ($siIntervention == 1) {
