@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\InterventionRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Avion;
 
 #[ORM\Entity(repositoryClass: InterventionRepository::class)]
 class Intervention
@@ -14,9 +15,9 @@ class Intervention
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Avion $InterventionAvion = null;
+    #[ORM\ManyToOne(targetEntity: Avion::class)]
+    #[ORM\JoinColumn(name: 'avion_immatriculation', referencedColumnName: 'immatriculation', nullable: false)]
+    private Avion $avion;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
@@ -39,14 +40,14 @@ class Intervention
         return $this->id;
     }
 
-    public function getInterventionAvion(): ?Avion
+    public function getInterventionAvion(): Avion
     {
-        return $this->InterventionAvion;
+        return $this->avion;
     }
 
-    public function setInterventionAvion(Avion $InterventionAvion): static
+    public function setInterventionAvion(Avion $avion): self
     {
-        $this->InterventionAvion = $InterventionAvion;
+        $this->avion = $avion;
 
         return $this;
     }

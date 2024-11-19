@@ -24,6 +24,12 @@ class Avion
         return $this->immatriculation;
     }
 
+    public function setImmatriculation(string $immatriculation): static
+    {
+        $this->immatriculation = $immatriculation;
+
+        return $this;
+    }
 
     public function getAvionCompanie(): ?Companies
     {
@@ -36,7 +42,6 @@ class Avion
 
         return $this;
     }
-
 
     public function getAvionStatue(): ?Statues
     {
