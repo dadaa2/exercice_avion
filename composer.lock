@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6b385b2f288f2c297e95a717414eb72",
+    "content-hash": "d13470d1231efccd2344160174816aed",
     "packages": [
         {
             "name": "composer/semver",
@@ -632,57 +632,6 @@
                 }
             ],
             "time": "2024-05-14T20:32:18+00:00"
-        },
-        {
-            "name": "doctrine/doctrine1",
-            "version": "v1.2.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/doctrine1.git",
-                "reference": "88903e2d7d82852ec9b80ccbf02bd8e6fa2cbec6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine1/zipball/88903e2d7d82852ec9b80ccbf02bd8e6fa2cbec6",
-                "reference": "88903e2d7d82852ec9b80ccbf02bd8e6fa2cbec6",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pdo": "*",
-                "php": ">=5.2.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Doctrine_": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "Konsta Vesterinen",
-                    "email": "kvesteri@cc.hut.fi"
-                },
-                {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com"
-                }
-            ],
-            "description": "PHP5 Database ORM",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "database",
-                "orm"
-            ],
-            "support": {
-                "issues": "https://github.com/doctrine/doctrine1/issues",
-                "source": "https://github.com/doctrine/doctrine1/tree/v1.2.5"
-            },
-            "abandoned": true,
-            "time": "2012-04-01T17:53:05+00:00"
         },
         {
             "name": "doctrine/event-manager",
