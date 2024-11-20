@@ -48,10 +48,14 @@ class InterventionController extends AbstractController
         }
 
         if ($request->isMethod("POST")) {
-            $intervention->setInterventionDateDebut(new \DateTime($request->request->get ('date_debut')));
-            $intervention->setInterventionDateFin(new \DateTime($request->request->get ('date_fin')));
-            $intervention->setInterventionType($request->request->get('type'));
-            $intervention->setInterventionCommentaire($request->request->get('commentaire'));
+            $intervention->setInterventionDateDebut
+            (new \DateTime($request->request->get ('date_debut')));
+            $intervention->setInterventionDateFin
+            (new \DateTime($request->request->get ('date_fin')));
+            $intervention->setInterventionType
+            ($request->request->get('type'));
+            $intervention->setInterventionCommentaire
+            ($request->request->get('commentaire'));
             
             $em -> flush();
             return $this->redirectToRoute('intervention/{id}');

@@ -10,14 +10,15 @@
 <div class="intervention-detail">
     <h1>Détail de l'intervention {{intervention.id}} pour  l'avion {{intervention.interventionAvion.immatriculation}}</h1>
 
-    form action="{{ path('intervention', { id: intervention.id }) }}" method="POST">
+    {#<form action="{{ path('intervention', { id: intervention.id }) }}" method="POST">
     <input type="date" name="date_debut" value="{{ intervention.interventionDateDebut|date('Y-m-d') }}" required>
     <input type="date" name="date_fin" value="{{ intervention.interventionDateFin|date('Y-m-d') }}" required>
     <input type="text" name="type" value="{{ intervention.interventionType }}" required>
     <textarea name="commentaire">{{ intervention.interventionCommentaire }}</textarea>
     <button type="submit">Modifier</button>
-    </form>
+    </form>#}
 
 
 </div>
 {% endblock %}
+
