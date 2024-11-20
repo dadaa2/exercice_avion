@@ -6,11 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class InterventionController extends AbstractController
+class AvionController extends AbstractController
 {
-    #[Route('/intervention', name: 'app_intervention')]
+    #[Route('/avion', name: 'app_avion')]
     public function index(): Response
     {
-        return $this->render('intervention/index.html.twig', []);
+        return $this->render('avion/index.html.twig', [
+            'controller_name' => 'AvionController',
+        ]);
     }
 }
