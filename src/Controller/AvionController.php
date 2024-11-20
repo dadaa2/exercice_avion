@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+use App\Form\InterventionAjoutType;
 class AvionController extends AbstractController
 {
     #[Route('/avion', name: 'app_avion')]
@@ -31,6 +32,7 @@ class AvionController extends AbstractController
                                     EntityManagerInterface $em
                                 ): Response
     {
+        //check si avion existe
         $statues = $statuesRepository->findAll();
         $avion = $avionRepository->find($id);
         $interventions = $interventionRepository->findBy(['avion' => $avion]);
@@ -44,5 +46,17 @@ class AvionController extends AbstractController
         'interventions' => $interventions
 
         ]);
+    }
+
+    
+    public function Addintervention(    InterventionAjoutType $intervention, 
+                                        Request $request, 
+                                        EntityManagerInterface $em
+                                        ): Response
+    {
+        return $this->render('app_name', [
+            
+        ]);
+
     }
 }
