@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des interventions{% endblock %}
+
+{% block body %}
+<style>
+  
+</style>
+<h1> Liste des interventions</h1>
+<div class="intervention-liste">
+
+    <div class="row header-row">
+        <section class="col">Matricule de l'avion</section>
+        <section class="col">Type d'intervention</section>
+        <section class="col">Début de l'intervention</section>
+        <section class="col">Fin de l'intervention</section>
+        <section class="col">Commentaire</section>
+        <section class="col"></section>
+    </div>
+
+
+    {% if interventions is not empty %}
+        {% for intervention in interventions %}
+            <div class="row">
+                <section class="col">{{ intervention.interventionAvion.immatriculation}}</section> 
+                <section class="col">{{ intervention.interventionType}}</section>
+                <section class="col">{{ intervention.interventionDateDebut|date('d/m/Y') }}</section>
+                <section class="col">{{ intervention.interventionDateFin|date('d/m/Y') }}</section>
+                <section class="col">{{ intervention.interventionCommentaire}}</section>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Aucune intervention trouvé.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

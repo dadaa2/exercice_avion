@@ -11,8 +11,8 @@ class AvionController extends AbstractController
     #[Route('/avion', name: 'app_avion')]
     public function index(): Response
     {
+
         return $this->render('avion/index.html.twig', [
-            'controller_name' => 'AvionController',
         ]);
     }
 }
