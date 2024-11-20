@@ -1,62 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AvionController!{% endblock %}
+{% block title %}Hello AvionController!
+{% endblock %}
 
 {% block body %}
-<style>
-    
-</style>
-{#{ dump(avion, statues, interventions) }#}
+	<style></style>
+	{#{ dump(avion, statues, interventions) }#}
 
-<div class="container">
-    <h1>Détail de l'avion {{avion.immatriculation}}</h1>
-    <div class="row information">
-        <section class="col">Companie de l'avion</section>
-        <section class="col">Status</section>
-    </div>
-    
-    <div class="row">
-        <section class="col">{{avion.avionCompanie.companieNom}}</section>
-        <section class="col">{{avion.avionStatue.statueNom}}</section>
-    </div>
-</div>
+	<div class="container">
+		<h1>Détail de l'avion
+			{{avion.immatriculation}}</h1>
+		<div class="row information">
+			<section class="col">
+				<h2>Companie de l'avion</h2>
+			</section>
+			<section class="col">
+				<h2>Status</h2>
+			</section>
+		</div>
 
-    <div class="container intervention">
-        <h1>Historique des interventions</h1>
-        {% if interventions is not empty %}
-            <ul>
-                {% for intervention in interventions %}
-                    <li>
-                        <strong>Date de création de l'intervention :</strong> {{ intervention.interventionDateCreation|date('d/m/Y H:i:s') }} <br>
-                        <strong>Type d'intervention :</strong> {{ intervention.interventionType }} <br>
-                        <strong>Date de début :</strong> {{ intervention.interventionDateDebut|date('d/m/Y H:i:s') }} <br>
-                        <strong>Date de fin :</strong> {{ intervention.interventionDateFin|date('d/m/Y H:i:s') }} <br>
-                        <strong>Commentaire :</strong> {{ intervention.interventionCommentaire }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>Aucune intervention trouvée pour cet avion.</p>
-        {% endif %}
-        
-    </div>
+		<div class="row">
+			<section class="col">{{avion.avionCompanie.companieNom}}</section>
+			<section class="col">{{avion.avionStatue.statueNom}}</section>
+		</div>
+	</div>
+	<div class="container intervention">
+		<h1>Historique des interventions</h1>
+		{% if interventions is not empty %}
+			<ul>
+				{% for intervention in interventions %}
+					<li>
+						<div class="row">
+							<div class="col">
+								<strong>Date de création de l'intervention :</strong>
+								{{ intervention.interventionDateCreation|date('d/m/Y H:i:s') }}
+								<br>
+							</div>
 
+							<div class="col">
+								<strong>Type d'intervention :</strong>
+								{{ intervention.interventionType }}
+								<br>
+							</div>
 
-    {#{% if avions is not empty %}
-        {% for avion in avions %}
-            <div class="row">
-                <section class="col">{{ avion.id}}</section>
-                <section class="col">{{ avion.modele }}</section>
-                <section class="col">{{ avion.fabriquant }}</section>
-                <section class="col">{{ avion.capacitéPassager }}</section>
-                <section class="col">{{ avion.dateFabrication|date('d/m/Y') }}</section>
-                <section class="col">{{ avion.statusAvion.libelleStatus }}</section>
-                <section class="col"> 
-                    <a href="{{ path('avion_show', {'id': avion.id}) }}">Voir détail de l'avion</a>
-                </section>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>Aucun avion trouvé.</p>
-    {% endif %}#}
+						</div>
+						<div class="row">
+
+							<div class="col">
+								<strong>Date de début :</strong>
+								{{ intervention.interventionDateDebut|date('d/m/Y H:i:s') }}
+								<br>
+							</div>
+							<div class="col">
+								<strong>Date de fin :</strong>
+								{{ intervention.interventionDateFin|date('d/m/Y H:i:s') }}
+								<br>
+							</div>
+
+						</div>
+						<div class="col commentaire">
+							<strong>Commentaire :</strong>
+							<div class="col">
+								{{ intervention.interventionCommentaire }}
+							</div>
+						</div>
+						<br>
+					</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>Aucune intervention trouvée pour cet avion.</p>
+		{% endif %}
+	</div>
 {% endblock %}
