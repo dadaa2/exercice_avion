@@ -5,8 +5,8 @@
 
 {% block body %}
 	<style></style>
-	{#{ dump(avion, statues, interventions) }#}
-
+	{{ dump(avion, interventions, form) }}
+    {# Partie qui affiche les caractéristiques de l'avion#}
 	<div class="container">
 		<h1>Détail de l'avion
 			{{avion.immatriculation}}</h1>
@@ -24,6 +24,18 @@
 			<section class="col">{{avion.avionStatue.statueNom}}</section>
 		</div>
 	</div>
+
+    {#  #}
+    <div class="container intervention-ajout">
+        {{form_start(form)}}
+            {{form_row(form.InterventionDateDebut)}}
+            {{form_row(form.InterventionDateFin)}}
+            {{form_row(form.InterventionType)}}
+            {{form_row(form.InterventionCommentaire)}}
+        {{form_end(form)}}
+    </div>
+
+    {# Partie qui affiche les interventions #}
 	<div class="container intervention">
 		<h1>Historique des interventions</h1>
 		{% if interventions is not empty %}

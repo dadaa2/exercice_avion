@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\AvionRepository;
 use App\Repository\InterventionRepository;
 use App\Repository\StatuesRepository;
+use App\Entity\Intervention;
 
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -30,25 +31,43 @@ class AvionController extends AbstractController
                                     InterventionRepository $interventionRepository ,
                                     Request $request, 
                                     EntityManagerInterface $em
+                                    // InterventionAjoutType $interventionsAjoutType,
                                 ): Response
     {
-        //check si avion existe
-        $statues = $statuesRepository->findAll();
+        // check si avion et ses intervention existe
         $avion = $avionRepository->find($id);
         $interventions = $interventionRepository->findBy(['avion' => $avion]);
         if (!$avion) {
             throw $this->createNotFoundException("Cette avion n'existe pas");
         }
         
-    return $this->render('avion/avionDetail.html.twig', [
-        'avion' => $avion,
-        'statues' => $statues,
-        'interventions' => $interventions
 
-        ]);
-    }
+        // section pour ajouter le formulaire
+        // Créer une nouvelle intervention pour cet avion
+        $intervention = new Intervention();
+        $intervention->setInterventionAvion($avion); // Lier l'intervention à l'avion
 
-    
+        $form = $this->createForm(InterventionAjoutType::class, $intervention);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Enregistrer l'intervention dans la base de données
+            $em->persist($intervention);
+            $em->flush();
+
+            // Rediriger pour éviter la soumission multiple
+            return $this->redirectToRoute('app_avion', ['id' => $avion->getId()]);
+        }
+
+        return $this->render('avion/avionDetail.html.twig', [
+            'avion' => $avion,
+            'interventions' => $interventions,
+            'form' => $form->createView()
+            ]);
+        }
+
+
+
     public function Addintervention(    InterventionAjoutType $intervention, 
                                         Request $request, 
                                         EntityManagerInterface $em

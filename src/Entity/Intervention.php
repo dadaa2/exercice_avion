@@ -40,7 +40,7 @@ class Intervention
         return $this->id;
     }
 
-    public function getInterventionAvion(): Avion
+    public function getAvion(): Avion
     {
         return $this->avion;
     }
