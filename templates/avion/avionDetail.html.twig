@@ -5,7 +5,7 @@
 
 {% block body %}
 	<style></style>
-	{{ dump(avion, interventions, form) }}
+	{{ dump(avion, interventions, ajoutIntervention) }}
     {# Partie qui affiche les caractéristiques de l'avion#}
 	<div class="container">
 		<h1>Détail de l'avion
@@ -25,14 +25,15 @@
 		</div>
 	</div>
 
-    {#  #}
-    <div class="container intervention-ajout">
-        {{form_start(form)}}
-            {{form_row(form.InterventionDateDebut)}}
-            {{form_row(form.InterventionDateFin)}}
-            {{form_row(form.InterventionType)}}
-            {{form_row(form.InterventionCommentaire)}}
-        {{form_end(form)}}
+    {# section pour le formulaire #}
+    <div class="container mb-3">
+        {{form_start(ajoutIntervention)}}
+            {{form_row(ajoutIntervention.InterventionDateDebut)}}
+            {{form_row(ajoutIntervention.InterventionDateFin)}}
+            {{form_row(ajoutIntervention.InterventionType)}}
+            {{form_row(ajoutIntervention.InterventionCommentaire)}}
+            <button type="submit"> Ajouter l'intervention</button>
+        {{form_end(ajoutIntervention)}}
     </div>
 
     {# Partie qui affiche les interventions #}

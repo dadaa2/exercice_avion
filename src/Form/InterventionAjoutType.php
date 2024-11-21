@@ -15,22 +15,24 @@ class InterventionAjoutType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('InterventionDateCreation', null, [
-                'widget' => 'single_text',
-            ])
+            // ->add('InterventionDateCreation', null, [
+            //     'widget' => 'single_text',
+            // ])
+            // ->add('avion', EntityType::class, [
+            //     'class' => Avion::class,
+            //     'choice_label' => 'immatriculation',
+            // ])
+
             ->add('InterventionDateDebut', null, [
                 'widget' => 'single_text',
             ])
             ->add('InterventionDateFin', null, [
                 'widget' => 'single_text',
             ])
-            ->add('avion', EntityType::class, [
-                'class' => Avion::class,
-                'choice_label' => 'immatriculation',
-            ])
+            
             ->add('InterventionType', EntityType::class, [
                 'class' => TypeIntervention::class,
-                'choice_label' => 'id',
+                'choice_label' => 'typeInterventionNom',
             ])
             ->add('InterventionCommentaire')
 

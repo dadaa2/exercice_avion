@@ -47,11 +47,11 @@ class AvionController extends AbstractController
         $intervention = new Intervention();
         $intervention->setInterventionAvion($avion); // Lier l'intervention à l'avion
 
-        $form = $this->createForm(InterventionAjoutType::class, $intervention);
-        $form->handleRequest($request);
+        $ajoutIntervention = $this->createForm(InterventionAjoutType::class, $intervention);
+        $ajoutIntervention->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Enregistrer l'intervention dans la base de données
+        // Enregistrer l'intervention dans la base de données
+        if ($ajoutIntervention->isSubmitted() && $ajoutIntervention->isValid()) {
             $em->persist($intervention);
             $em->flush();
 
@@ -62,7 +62,7 @@ class AvionController extends AbstractController
         return $this->render('avion/avionDetail.html.twig', [
             'avion' => $avion,
             'interventions' => $interventions,
-            'form' => $form->createView()
+            'ajoutIntervention' => $ajoutIntervention->createView()
             ]);
         }
 
