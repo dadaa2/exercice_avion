@@ -43,7 +43,6 @@ class AvionController extends AbstractController
         if ($ajoutInterventionForm->isSubmitted() && $ajoutInterventionForm->isValid()) {
             $ajoutIntervention->setInterventionDateCreation(new \DateTime());
 
-            // Essaie de l'insertion dans la BDD
             try {
                 $em->persist($ajoutIntervention);
                 $em->flush();
