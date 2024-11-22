@@ -10,6 +10,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\SubmitButton;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 class InterventionAjoutType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -25,17 +28,25 @@ class InterventionAjoutType extends AbstractType
 
             ->add('InterventionDateDebut', null, [
                 'widget' => 'single_text',
+                'required'=> true,
+                'label' => "Date du début de l'intervention"
             ])
             ->add('InterventionDateFin', null, [
                 'widget' => 'single_text',
+                'required'=> true,
+                'label' => "Date de fin de l'intervention"
             ])
             
-            ->add('InterventionType', EntityType::class, [
-                'class' => TypeIntervention::class,
-                'choice_label' => 'typeInterventionNom',
+            ->add('InterventionType', EntityType::class, ['class' => TypeIntervention::class, 'choice_label' => 'typeInterventionNom',
+                'label' => "Type d'intervention à affecter "
             ])
-            ->add('InterventionCommentaire')
 
+            ->add('InterventionCommentaire', options:[
+                'label' => "Type d'intervention à affecter"
+                ])
+            ->add('submit', SubmitType::class, options: [
+                'label' => "Ajouter l'intervention",
+                ])
 
         ;
     }

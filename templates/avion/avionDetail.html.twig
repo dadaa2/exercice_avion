@@ -5,7 +5,7 @@
 
 {% block body %}
 	<style></style>
-	{{ dump(avion, interventions, ajoutIntervention) }}
+	{#{ dump(avion, interventions, ajoutIntervention) }#}
     {# Partie qui affiche les caractéristiques de l'avion#}
 	<div class="container">
 		<h1>Détail de l'avion
@@ -27,17 +27,24 @@
 
     {# section pour le formulaire #}
     <div class="container mb-3">
-        {{form_start(ajoutIntervention)}}
-            {{form_row(ajoutIntervention.InterventionDateDebut)}}
-            {{form_row(ajoutIntervention.InterventionDateFin)}}
-            {{form_row(ajoutIntervention.InterventionType)}}
-            {{form_row(ajoutIntervention.InterventionCommentaire)}}
-            <button type="submit"> Ajouter l'intervention</button>
-        {{form_end(ajoutIntervention)}}
+        <h1>Ajout d'une intervention</h1>
+        {{ form_start(ajoutIntervention) }}
+            {{ form_row(ajoutIntervention.InterventionDateDebut) }}
+            {{ form_row(ajoutIntervention.InterventionDateFin) }}
+            {{ form_row(ajoutIntervention.InterventionType) }}
+            {{ form_row(ajoutIntervention.InterventionCommentaire) }}
+        {{ form_end(ajoutIntervention) }}
+		{% for label, messages in app.flashes %}
+    		{% for message in messages %}
+        		<div class="alert alert-{{ label }}">
+            		{{ message }}
+        		</div>
+    		{% endfor %}
+		{% endfor %}
     </div>
 
-    {# Partie qui affiche les interventions #}
-	<div class="container intervention">
+		{# Partie qui affiche les interventions #}
+	<div class="container listes-interventions">
 		<h1>Historique des interventions</h1>
 		{% if interventions is not empty %}
 			<ul>
@@ -69,7 +76,6 @@
 								{{ intervention.interventionDateFin|date('d/m/Y H:i:s') }}
 								<br>
 							</div>
-
 						</div>
 						<div class="col commentaire">
 							<strong>Commentaire :</strong>
