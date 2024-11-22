@@ -25,13 +25,22 @@
 	</div>
 
     {# section pour le formulaire #}
-    <div class="container mb-3">
+    <div class="container">
         <h1>Ajout d'une intervention</h1>
         {{ form_start(ajoutIntervention) }}
-            {{ form_row(ajoutIntervention.InterventionDateDebut) }}
-            {{ form_row(ajoutIntervention.InterventionDateFin) }}
-            {{ form_row(ajoutIntervention.InterventionType) }}
-            {{ form_row(ajoutIntervention.InterventionCommentaire) }}
+			<div class="row">
+				{{ form_row(ajoutIntervention.InterventionDateDebut) }}
+				{{ form_row(ajoutIntervention.InterventionDateFin) }}
+
+			</div>
+			<div class="mb-3 row">
+				{{ form_row(ajoutIntervention.InterventionType) }}
+
+			</div>
+			<div class="mb-3 row">
+				{{ form_row(ajoutIntervention.InterventionCommentaire) }}
+
+			</div>
         {{ form_end(ajoutIntervention) }}
 		{% for label, messages in app.flashes %}
     		{% for message in messages %}
