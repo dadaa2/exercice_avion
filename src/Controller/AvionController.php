@@ -43,13 +43,15 @@ class AvionController extends AbstractController
         if ($ajoutInterventionForm->isSubmitted() && $ajoutInterventionForm->isValid()) {
             dump($ajoutIntervention);
             $ajoutIntervention->setInterventionDateCreation(new \DateTime());
+
+            // Essaie de l'insertion dans la BDD
             try {
                 $em->persist($ajoutIntervention);
                 $em->flush();
                 
                 $this->addFlash('success', 'L\'intervention a été ajoutée avec succès');
                 
-                return $this->redirectToRoute('app_avion_detail', [
+                return $this->redirectToRoute('app_avion', [
                     'id' => $avion->getImmatriculation()
                 ]);
             } catch (\Exception $e) {
