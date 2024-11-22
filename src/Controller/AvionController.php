@@ -56,8 +56,10 @@ class AvionController extends AbstractController
                 $this->addFlash('error', "Une erreur est survenue lors de l'enregistrement : ". $e->getMessage());
                 error_log($e->getTraceAsString());
             } 
-            } elseif ($ajoutInterventionForm->isSubmitted()) {
-                foreach ($ajoutIntervention->getErrors(True) as $error){
+            } else {
+                // Correction pour afficher  erreur de validation
+                $errors = $ajoutInterventionForm->getErrors(true);
+                foreach ($errors as $error) {
                     $this->addFlash('error', $error->getMessage());
                 }
             }
