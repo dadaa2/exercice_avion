@@ -4,3 +4,18 @@ AddInterventionForm:
     Type: "Type d'intervention"
     Commentary: "Commentaire"
     Submit: "Ajouter l'intervention"
+
+
+planeDetail: "Detail de l'avion "
+planeCompanie: "Companie de l'avion"
+planeStatus: "Status de l'avion"
+addAPlane: "Ajouter une intervention à cette avion"
+historyOfIntervention: "Historique des interventions de cette avion"
+
+intervention: 
+    Date: 
+        Creation: "Date de la création de l'intervention"
+        Start: "Début de l'intervention"
+        End: "Fin de l'intervention"
+    Type: "Type d'intervention"
+    Commentary: "Commentaire"

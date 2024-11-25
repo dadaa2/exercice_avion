@@ -2,12 +2,3 @@
 'No results found': 'Aucun résultat trouvé'
 'No more results': 'Aucun autre résultat trouvé'
 'Add %placeholder%...': 'Ajouter %placeholder%...'
-
-
-
-AddInterventionForm:
-    Start: "Début de l'intervention"
-    End: "Fin de l'intervention"
-    Type: "Type d'intervention"
-    Commentary: "Commentaire"
-    Submit: "Ajouter l'intervention"
