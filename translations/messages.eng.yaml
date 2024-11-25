@@ -5,12 +5,11 @@ AddInterventionForm:
     Commentary: "Commentary"
     Submit: "Add the intervention"
 
-
 planeDetail: "Detail of the plane  "
 planeCompanie: "Companie of the plane"
 planeStatus: "Status of the avion"
-addAPlane: "Add an interventionof the intervention of intervention of this plane"
-
+addAIntervention: "Add an intervention of intervention of this plane"
+historyOfIntervention: "History of intervention on this plane"
 
 intervention:
     Date: 
@@ -19,3 +18,4 @@ intervention:
         End: "End of the intervention"
     Type: "Type of the intervention"
     Comment ary: "Commentary"
+    interventionNotFound: "No intervention was found for this plane."

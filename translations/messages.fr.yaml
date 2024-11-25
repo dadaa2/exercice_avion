@@ -5,11 +5,10 @@ AddInterventionForm:
     Commentary: "Commentaire"
     Submit: "Ajouter l'intervention"
 
-
 planeDetail: "Detail de l'avion "
 planeCompanie: "Companie de l'avion"
 planeStatus: "Status de l'avion"
-addAPlane: "Ajouter une intervention à cette avion"
+addAIntervention: "Ajouter une intervention à cette avion"
 historyOfIntervention: "Historique des interventions de cette avion"
 
 intervention: 
@@ -19,3 +18,4 @@ intervention:
         End: "Fin de l'intervention"
     Type: "Type d'intervention"
     Commentary: "Commentaire"
+interventionNotFound: "Aucune intervention trouvée pour cet avion."

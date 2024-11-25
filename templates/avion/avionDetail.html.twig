@@ -6,13 +6,13 @@
 	<style></style>
     {# Partie qui affiche les caractéristiques de l'avion#}
 	<div class="container">
-		<h1> {%trans%} planeDetail {% endtrans%} {{avion.immatriculation}} </h1>
+		<h1>{{"planeDetail" | trans()}}</h1>
 		<div class="row information">
 			<section class="col">
-				<h2>{%trans%} planeCompanie {%endtrans%}</h2>
+				<h2>{{ "planeCompanie"| trans() }}</h2>
 			</section>
 			<section class="col">
-				<h2>{%trans%} planeStatus {%endtrans%}</h2>
+				<h2>{{"planeStatus" |trans()}}</h2>
 			</section>
 		</div>
 
@@ -24,7 +24,7 @@
 
     {# section pour le formulaire #}
     <div class="container">
-        <h1>{%trans%} addAPlane {%endtrans%}</h1>
+        <h1>{{"addAIntervention" |trans()}}</h1>
         {{ form_start(ajoutIntervention) }}
 			<div class="row">
 				{{ form_row(ajoutIntervention.InterventionDateDebut) }}
@@ -50,50 +50,52 @@
 
 	{# Partie qui affiche les interventions #}
 	<div class="container listes-interventions">
-		<h1>{%trans%} historyOfIntervention {%endtrans%}</h1>
+		<h1>{{ "historyOfIntervention" |trans() }}</h1>
 		{% if interventions is not empty %}
 			<ul>
 				{% for intervention in interventions %}
-					<li>
+					<div class="panel-group">
+
 						<div class="row">
 							<div class="col">
-								<strong>{%trans%} intervention.Date.Creation {%endtrans%} :</strong>
-								{{ intervention.interventionDateCreation|date('d/m/Y H:i:s') }}
-								<br>
-							</div>
-
-							<div class="col">
-								<strong>{%trans%} intervention.Type {%endtrans%} :</strong>
+								<strong>{{"intervention.Type" |trans()}} : </strong>
 								{{ intervention.interventionType }}
 								<br>
 							</div>
 
+							<div class="panel-body">
+								<strong>{{"intervention.Date.Creation" |trans()}} : </strong>
+								{{ intervention.interventionDateCreation|date('d/m/Y H:i:s') }}
+								<br>
+							</div>							
 						</div>
-						<div class="row">
+						<div>
 
+						<div class="row">
 							<div class="col">
-								<strong>{%trans%} intervention.Date.Start {%endtrans%}</strong>
+								<strong>{{"intervention.Date.Start" |trans()}} : </strong>
 								{{ intervention.interventionDateDebut|date('d/m/Y H:i:s') }}
 								<br>
 							</div>
+
 							<div class="col">
-								<strong>{%trans%}intervention.Date.End {%endtrans%}:</strong>
+								<strong>{{"intervention.Date.End" |trans()}} : </strong>
 								{{ intervention.interventionDateFin|date('d/m/Y H:i:s') }}
 								<br>
 							</div>
 						</div>
-						<div class="col commentaire">
-							<strong>{%trans%}intervention.Commentary {%endtrans%} :</strong>
+						<div class="panel-body">
+							<strong>{{"intervention.Commentary" |trans()}} :</strong>
 							<div class="col">
 								{{ intervention.interventionCommentaire }}
 							</div>
 						</div>
-						<br>
-					</li>
+					</div>
+					<br>
 				{% endfor %}
 			</ul>
 		{% else %}
-			<p>Aucune intervention trouvée pour cet avion.</p>
+			<p>{{"interventionNotFound" |trans()}}</p>
 		{% endif %}
 	</div>
 {% endblock %}
