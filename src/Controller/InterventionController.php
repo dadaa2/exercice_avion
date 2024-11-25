@@ -22,8 +22,12 @@ class InterventionController extends AbstractController
         ]);
     }
 
+    // Page pour toute les interventions
     #[Route('/liste-intervention', name: 'liste_interventions')]
-    public function liste(InterventionRepository $interventionRepository, AvionRepository $avionRepository): Response
+    public function liste(
+        InterventionRepository $interventionRepository, 
+        AvionRepository $avionRepository
+        ): Response
     {
         $interventions = $interventionRepository->findAll();
         $avions = $avionRepository->findAll();
@@ -34,12 +38,14 @@ class InterventionController extends AbstractController
         ]);
     }
 
+    // Page pour chaque intervention
     #[Route('/intervention/{id}', name:'intervention', methods:['GET', 'POST'])]
-    public function interventionDetail( int $id, 
-                                        InterventionRepository $interventionRepository, 
-                                        Request $request, 
-                                        EntityManagerInterface $em
-                                        ): Response
+    public function interventionDetail(
+        int $id, 
+        InterventionRepository $interventionRepository, 
+        Request $request, 
+        EntityManagerInterface $em
+        ): Response
     {
         $intervention = $interventionRepository->find($id);
         //vérifier si intervention existe

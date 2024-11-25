@@ -1,17 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AvionController!{% endblock %}
+{% block title %}Intervention numéro {{intervention.id}}{% endblock %}
 
 {% block body %}
 <style>
     
 </style>
 
-<div class="container intervention-detail">
-    <h1>Détail de l'intervention {{intervention.id}} pour  l'avion {{intervention.interventionAvion.immatriculation}}</h1>
+<div class="container mt-5">
+    <h1>Détail de l'intervention {{intervention.id}} pour  l'avion {{intervention.avion.immatriculation}}</h1>
+    <div class="card">
+        <div class="card primary">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Type d'intervention</h4>
+                    <p>{{ intervention.interventionType}}
+                </div>
+                <div class="col-md-8">
+                    <h4>Création de l'intervention</h4>
+                    <p>{{ intervention.interventionDateCreation|date('d/m/Y')}}</p>
+                </div>
+            </div>
 
-   
+        </div>
 
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class=" col-md-4">
+                    <h4>Début de l'intervention</h4>
+                    <p>{{ intervention.interventionDateDebut|date('d/m/Y') }}
+                </div>
+                <div class=" col-md-4">
+                    <h4>Fin de l'intervention</h4>
+                    <p>{{ intervention.interventionDateFin|date('d/m/Y') }}
+                </div>
+                <div class=" col-md-4">
+                    <h4>Type d'intervention</h4>
+                    <p>{{ intervention.interventionCommentaire }}
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 {% endblock %}
