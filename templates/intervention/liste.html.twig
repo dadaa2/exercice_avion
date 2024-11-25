@@ -1,40 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des interventions{% endblock %}
+{% block title %}Liste des interventions
+{% endblock %}
 
 {% block body %}
-<h1> Liste des interventions</h1>
-<div class="container intervention-liste">
+	<h1>
+		Liste des interventions</h1>
+	<div class="container intervention-liste">
+		<table class="table table-hover">
 
-    <div class="row header-row">
+			<thead>
+				<tr>
 
-        <section class="col">Matricule de l'avion</section>
+					<th>Matricule de l'avion</th>
+					<th>Type d'intervention</th>
+					<th>Début de l'intervention</th>
+					<th>Fin de l'intervention</th>
+					<th>Commentaire</th>
+					<th></th>
+				</tr>
+			</thead>
 
-        <section class="col">Type d'intervention</section>
+			{% if interventions is not empty %}
+				{% for intervention in interventions %}
+					<tbody>
+						<tr>
+							<td>
+								<a href="{{ path('app_avion', {id: intervention.getAvion.immatriculation}) }}">{{ intervention.getAvion.immatriculation }}</a>
+							</td>
+							<td>{{ intervention.interventionType }}</td>
+							<td>{{ intervention.interventionDateDebut|date('d/m/Y') }}</td>
+							<td>{{ intervention.interventionDateFin|date('d/m/Y') }}</td>
+							<td>{{ intervention.interventionCommentaire }}</td>
+							<td>
+								<a href="{{ path('intervention', {id: intervention.id}) }}">Voir détail</a>
+							</td>
+						</tr>
+						<tr></tr>
+					</tbody>
+				{% endfor %}
+			{% else %}
+				<p>Aucune intervention trouvé.</p>
+			{% endif %}
+		</table>
 
-        <section class="col">Début de l'intervention</section>
-
-        <section class="col">Fin de l'intervention</section>
-        <section class="col">Commentaire</section>
-        <section class="col"></section>
-    </div>
-
-    {% if interventions is not empty %}
-        {% for intervention in interventions %}
-            <div class="row">
-                <section class="col">{{ intervention.getAvion.immatriculation}}</section> 
-                <section class="col">{{ intervention.interventionType}}</section>
-                <section class="col">{{ intervention.interventionDateDebut|date('d/m/Y') }}</section>
-                <section class="col">{{ intervention.interventionDateFin|date('d/m/Y') }}</section>
-                <section class="col">{{ intervention.interventionCommentaire}}</section>
-                <section class="col"> 
-                    <a href="{{ path('intervention', {id: intervention.id}) }}">Voir détail</a>
-                </section>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>Aucune intervention trouvé.</p>
-    {% endif %}
-
-</div>
+	</div>
 {% endblock %}

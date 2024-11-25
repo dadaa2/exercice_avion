@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Avion {{avion.immatriculation}}{% endblock %}
+{% block title %}Avion
+	{{avion.immatriculation}}
+{% endblock %}
 
 {% block body %}
 	<style></style>
-    {# Partie qui affiche les caractéristiques de l'avion#}
+	{# Partie qui affiche les caractéristiques de l'avion#}
 	<div class="container">
 		<h1>{{"planeDetail" | trans()}}</h1>
 		<div class="row information">
@@ -22,78 +24,84 @@
 		</div>
 	</div>
 
-    {# section pour le formulaire #}
-    <div class="container">
-        <h1>{{"addAIntervention" |trans()}}</h1>
-        {{ form_start(ajoutIntervention) }}
-			<div class="row">
-				{{ form_row(ajoutIntervention.InterventionDateDebut) }}
-				{{ form_row(ajoutIntervention.InterventionDateFin) }}
-			</div>
-			<div class="mb-3 row">
-				{{ form_row(ajoutIntervention.InterventionType) }}
+	{# section pour le formulaire #}
+	<div class="container">
+		<h1>{{"addAIntervention" |trans()}}</h1>
+		{{ form_start(ajoutIntervention) }}
+		<div class="row">
+			{{ form_row(ajoutIntervention.InterventionDateDebut) }}
+			{{ form_row(ajoutIntervention.InterventionDateFin) }}
+		</div>
+		<div class="mb-3 row">
+			{{ form_row(ajoutIntervention.InterventionType) }}
 
-			</div>
-			<div class="mb-3 row">
-				{{ form_row(ajoutIntervention.InterventionCommentaire) }}
+		</div>
+		<div class="mb-3 row">
+			{{ form_row(ajoutIntervention.InterventionCommentaire) }}
 
-			</div>
-        {{ form_end(ajoutIntervention) }}
+		</div>
+		{{ form_end(ajoutIntervention) }}
 		{% for label, messages in app.flashes %}
-    		{% for message in messages %}
-        		<div class="alert alert-{{ label }}">
-            		{{ message }}
-        		</div>
-    		{% endfor %}
+			{% for message in messages %}
+				<div class="alert alert-{{ label }}">
+					{{ message }}
+				</div>
+			{% endfor %}
 		{% endfor %}
-    </div>
+	</div>
 
 	{# Partie qui affiche les interventions #}
 	<div class="container listes-interventions">
 		<h1>{{ "historyOfIntervention" |trans() }}</h1>
 		{% if interventions is not empty %}
-			<ul>
-				{% for intervention in interventions %}
+			{% for intervention in interventions %}
+				<ul>
 					<div class="panel-group">
 
-						<div class="row">
-							<div class="col">
-								<strong>{{"intervention.Type" |trans()}} : </strong>
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								{{"intervention.Type" |trans()}}:
 								{{ intervention.interventionType }}
 								<br>
+
+								<div>
+									<strong>{{"intervention.Date.Creation" |trans()}}
+										:
+									</strong>
+									{{ intervention.interventionDateCreation|date('d/m/Y H:i:s') }}
+									<br>
+								</div>
 							</div>
 
-							<div class="panel-body">
-								<strong>{{"intervention.Date.Creation" |trans()}} : </strong>
-								{{ intervention.interventionDateCreation|date('d/m/Y H:i:s') }}
-								<br>
-							</div>							
-						</div>
-						<div>
+							<div class="pane-body">
+								<div class="col">
+									<strong>{{"intervention.Date.Start" |trans()}}
+										:
+									</strong>
+									{{ intervention.interventionDateDebut|date('d/m/Y H:i:s') }}
+									<br>
+								</div>
 
-						<div class="row">
-							<div class="col">
-								<strong>{{"intervention.Date.Start" |trans()}} : </strong>
-								{{ intervention.interventionDateDebut|date('d/m/Y H:i:s') }}
-								<br>
-							</div>
-
-							<div class="col">
-								<strong>{{"intervention.Date.End" |trans()}} : </strong>
-								{{ intervention.interventionDateFin|date('d/m/Y H:i:s') }}
-								<br>
-							</div>
-						</div>
-						<div class="panel-body">
-							<strong>{{"intervention.Commentary" |trans()}} :</strong>
-							<div class="col">
-								{{ intervention.interventionCommentaire }}
+								<div class="col">
+									<strong>{{"intervention.Date.End" |trans()}}
+										:
+									</strong>
+									{{ intervention.interventionDateFin|date('d/m/Y H:i:s') }}
+									<br>
+								</div>
+								<div>
+									<strong>{{"intervention.Commentary" |trans()}}
+										:</strong>
+									<div class="col">
+										{{ intervention.interventionCommentaire }}
+									</div>
+								</div>
 							</div>
 						</div>
+						<br>
 					</div>
-					<br>
-				{% endfor %}
-			</ul>
+				</ul>
+			{% endfor %}
 		{% else %}
 			<p>{{"interventionNotFound" |trans()}}</p>
 		{% endif %}

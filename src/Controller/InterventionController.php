@@ -34,7 +34,7 @@ class InterventionController extends AbstractController
         
         return $this->render('intervention/liste.html.twig', [
             'interventions'=> $interventions,
-            'avions'=> $avions
+            'avions'=> $avions,
         ]);
     }
 
@@ -43,6 +43,7 @@ class InterventionController extends AbstractController
     public function interventionDetail(
         int $id, 
         InterventionRepository $interventionRepository, 
+        AvionRepository $avionRepository,
         Request $request, 
         EntityManagerInterface $em
         ): Response
@@ -71,4 +72,24 @@ class InterventionController extends AbstractController
             'intervention'=>$intervention
         ]);
     }
+
+    #[Route('/intervention/{id}/delete', name: 'intervention_delete', methods: ['POST'])]
+    public function delete(
+        int $id, 
+        InterventionRepository $interventionRepository, 
+        EntityManagerInterface $entityManager
+        ): Response
+    {
+        $intervention = $interventionRepository->find($id);
+
+        if (!$intervention) {
+            throw $this->createNotFoundException("L'intervention avec l'id $id n'existe pas.");
+        }
+
+        $entityManager->remove($intervention);
+        $entityManager->flush();
+        return $this->redirectToRoute('/liste-intervention');
+
+    }
+
 }
