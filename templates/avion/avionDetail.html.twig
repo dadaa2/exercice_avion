@@ -1,20 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AvionController!
-{% endblock %}
+{% block title %}Avion {{avion.immatriculation}}{% endblock %}
 
 {% block body %}
 	<style></style>
     {# Partie qui affiche les caractéristiques de l'avion#}
 	<div class="container">
-		<h1>Détail de l'avion
-			{{avion.immatriculation}}</h1>
+		<h1> {%trans%} planeDetail {% endtrans%} {{avion.immatriculation}} </h1>
 		<div class="row information">
 			<section class="col">
-				<h2>Companie de l'avion</h2>
+				<h2>{%trans%} planeCompanie {%endtrans%}</h2>
 			</section>
 			<section class="col">
-				<h2>Status</h2>
+				<h2>{%trans%} planeStatus {%endtrans%}</h2>
 			</section>
 		</div>
 
@@ -26,12 +24,11 @@
 
     {# section pour le formulaire #}
     <div class="container">
-        <h1>Ajout d'une intervention</h1>
+        <h1>{%trans%} addAPlane {%endtrans%}</h1>
         {{ form_start(ajoutIntervention) }}
 			<div class="row">
 				{{ form_row(ajoutIntervention.InterventionDateDebut) }}
 				{{ form_row(ajoutIntervention.InterventionDateFin) }}
-
 			</div>
 			<div class="mb-3 row">
 				{{ form_row(ajoutIntervention.InterventionType) }}
@@ -51,22 +48,22 @@
 		{% endfor %}
     </div>
 
-		{# Partie qui affiche les interventions #}
+	{# Partie qui affiche les interventions #}
 	<div class="container listes-interventions">
-		<h1>Historique des interventions</h1>
+		<h1>{%trans%} historyOfIntervention {%endtrans%}</h1>
 		{% if interventions is not empty %}
 			<ul>
 				{% for intervention in interventions %}
 					<li>
 						<div class="row">
 							<div class="col">
-								<strong>Date de création de l'intervention :</strong>
+								<strong>{%trans%} intervention.Date.Creation {%endtrans%} :</strong>
 								{{ intervention.interventionDateCreation|date('d/m/Y H:i:s') }}
 								<br>
 							</div>
 
 							<div class="col">
-								<strong>Type d'intervention :</strong>
+								<strong>{%trans%} intervention.Type {%endtrans%} :</strong>
 								{{ intervention.interventionType }}
 								<br>
 							</div>
@@ -75,18 +72,18 @@
 						<div class="row">
 
 							<div class="col">
-								<strong>Date de début :</strong>
+								<strong>{%trans%} intervention.Date.Start {%endtrans%}</strong>
 								{{ intervention.interventionDateDebut|date('d/m/Y H:i:s') }}
 								<br>
 							</div>
 							<div class="col">
-								<strong>Date de fin :</strong>
+								<strong>{%trans%}intervention.Date.End {%endtrans%}:</strong>
 								{{ intervention.interventionDateFin|date('d/m/Y H:i:s') }}
 								<br>
 							</div>
 						</div>
 						<div class="col commentaire">
-							<strong>Commentaire :</strong>
+							<strong>{%trans%}intervention.Commentary {%endtrans%} :</strong>
 							<div class="col">
 								{{ intervention.interventionCommentaire }}
 							</div>

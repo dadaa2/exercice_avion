@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Translation\TranslatableMessage;
 
 class InterventionAjoutType extends AbstractType
 {
@@ -29,27 +30,33 @@ class InterventionAjoutType extends AbstractType
             ->add('InterventionDateDebut', null, [
                 'widget' => 'single_text',
                 'required'=> true,
-                'label' => "Date du début de l'intervention",
+                //'label' => trans("InterventionAddForm.DateDebut"),
+                'label' => "AddInterventionForm.Start",
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('InterventionDateFin', null, [
                 'widget' => 'single_text',
                 'required'=> true,
-                'label' => "Date de fin de l'intervention",
+                //'label' => t("InterventionAddForm.DateFin"),
+                'label' => "AddInterventionForm.End",
                 'attr' => ['class' => 'form-control'],
             ])
             
-            ->add('InterventionType', EntityType::class, ['class' => TypeIntervention::class, 'choice_label' => 'typeInterventionNom',
-                'label' => "Type d'intervention à affecter ",
+            ->add('InterventionType', EntityType::class, [
+                'class' => TypeIntervention::class, 'choice_label' => 'typeInterventionNom',
+                //'label' => t("InterventionAddForm.Type"),
+                'label' => "AddInterventionForm.Type",
                 'attr' => ['class' => 'form-control'],
             ])
 
             ->add('InterventionCommentaire', options:[
-                'label' => "Commentaire de l'intervention ",
+                //'label' => t("InterventionAddForm.Commentaire"),
+                'label' => "AddInterventionForm.Commentary",
                 'attr' => ['class' => 'form-control'],
                 ])
             ->add('submit', SubmitType::class, options: [
-                'label' => "Ajouter l'intervention",
+                //'label' => t("InterventionAddForm.Submit"),
+                'label' => "AddInterventionForm.Submit",
                 'attr' => ['class' => 'btn btn-primary'],
                 ])
 

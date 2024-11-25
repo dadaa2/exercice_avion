@@ -1,0 +1,21 @@
+AddInterventionForm:
+    Start: "Start of the intervention"
+    End: "End of the intervention"
+    Type: "Type of intervention"
+    Commentary: "Commentary"
+    Submit: "Add the intervention"
+
+
+planeDetail: "Detail of the plane  "
+planeCompanie: "Companie of the plane"
+planeStatus: "Status of the avion"
+addAPlane: "Add an interventionof the intervention of intervention of this plane"
+
+
+intervention:
+    Date: 
+        Creation: "Creation date of the intervention"
+        Start: "Start of the intervention"
+        End: "End of the intervention"
+    Type: "Type of the intervention"
+    Comment ary: "Commentary"
