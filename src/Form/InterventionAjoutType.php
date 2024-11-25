@@ -30,27 +30,33 @@ class InterventionAjoutType extends AbstractType
             ->add('InterventionDateDebut', null, [
                 'widget' => 'single_text',
                 'required'=> true,
-                'label' => TranslatableMessage("InterventionAddForm.DateDebut"),
+                //'label' => trans("InterventionAddForm.DateDebut"),
+                'label' => "AddInterventionForm.Start",
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('InterventionDateFin', null, [
                 'widget' => 'single_text',
                 'required'=> true,
-                'label' => t("InterventionAddForm.DateFin"),
+                //'label' => t("InterventionAddForm.DateFin"),
+                'label' => "AddInterventionForm.End",
                 'attr' => ['class' => 'form-control'],
             ])
             
-            ->add('InterventionType', EntityType::class, ['class' => TypeIntervention::class, 'choice_label' => 'typeInterventionNom',
-                'label' => t("InterventionAddForm.Type"),
+            ->add('InterventionType', EntityType::class, [
+                'class' => TypeIntervention::class, 'choice_label' => 'typeInterventionNom',
+                //'label' => t("InterventionAddForm.Type"),
+                'label' => "AddInterventionForm.Type",
                 'attr' => ['class' => 'form-control'],
             ])
 
             ->add('InterventionCommentaire', options:[
-                'label' => t("InterventionAddForm.Commentaire"),
+                //'label' => t("InterventionAddForm.Commentaire"),
+                'label' => "AddInterventionForm.Commentary",
                 'attr' => ['class' => 'form-control'],
                 ])
             ->add('submit', SubmitType::class, options: [
-                'label' => t("InterventionAddForm.Submit"),
+                //'label' => t("InterventionAddForm.Submit"),
+                'label' => "AddInterventionForm.Submit",
                 'attr' => ['class' => 'btn btn-primary'],
                 ])
 

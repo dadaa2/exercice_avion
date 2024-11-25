@@ -3,9 +3,11 @@
 'No more results': 'Aucun autre résultat trouvé'
 'Add %placeholder%...': 'Ajouter %placeholder%...'
 
-// "Date du début de l'intervention": 'test'
-// "Date de fin de l'intervention" : 'test'
-// "Type d'intervention à affecter' : 'test'
-// "Commentaire de l'intervention" : 'test'
-// "Ajouter l'intervention': 'test'
 
+
+AddInterventionForm:
+    Start: "Début de l'intervention"
+    End: "Fin de l'intervention"
+    Type: "Type d'intervention"
+    Commentary: "Commentaire"
+    Submit: "Ajouter l'intervention"

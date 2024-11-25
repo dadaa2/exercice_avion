@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AvionController!
-{% endblock %}
+{% block title %}Avion{{avion.immatriculation}}{% endblock %}
 
 {% block body %}
 	<style></style>
@@ -50,7 +49,7 @@
 		{% endfor %}
     </div>
 
-		{# Partie qui affiche les interventions #}
+	{# Partie qui affiche les interventions #}
 	<div class="container listes-interventions">
 		<h1>Historique des interventions</h1>
 		{% if interventions is not empty %}

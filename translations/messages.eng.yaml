@@ -1,0 +1,6 @@
+AddInterventionForm:
+    Start: "Start of the intervention"
+    End: "End of the intervention"
+    Type: "Type of intervention"
+    Commentary: "Commentary"
+    Submit: "Add the intervention"
