@@ -7,18 +7,27 @@ use App\Form\StatuesType;
 use App\Repository\StatuesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/statues')]
 final class StatuesController extends AbstractController
 {
     #[Route(name: 'app_statues_index', methods: ['GET'])]
-    public function index(StatuesRepository $statuesRepository): Response
+    public function index(
+        StatuesRepository $statuesRepository,
+        SerializerInterface $serializer,
+        ): Response
     {
+        $jsonStatues = $statuesRepository->findAll();
+        $jsonContent = $serializer->serialize($jsonStatues, 'json');
         return $this->render('statues/index.html.twig', [
             'statues' => $statuesRepository->findAll(),
+            JsonResponse::fromJsonString($jsonContent)
         ]);
     }
 
