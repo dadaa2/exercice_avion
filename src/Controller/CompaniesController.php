@@ -26,29 +26,31 @@ class CompaniesController extends AbstractController
         ]);
     }
     
-    #[Route('/add', name: 'add')]
+    #[Route('/add', name: '_add')]
     public function add(
+        EntityManagerInterface $entityManagerInterface,
         CompaniesRepository $companiesRepository,
         Request $request,
-        EntityManagerInterface $entityManagerInterface,
         ): Response
         {   
         $companies = new Companies();
         $companiesForm = $this->createForm(CompaniesType::class, $companies);
         $companiesForm->handleRequest($request);
-        
-        $entityManagerInterface->persist($companies);
-        $entityManagerInterface->flush();
+
+        if ($companiesForm->isSubmitted() && $companiesForm->isValid()) {    
+            $entityManagerInterface->persist($companies);
+            $entityManagerInterface->flush();
+        }
         
         return $this->renderForm('companies/add.html.twig', compact('companiesForm'));
     }
 
-    #[Route('/edit/{id}', name: 'edit')]
+    #[Route('/edit/{id}', name: '_edit')]
     public function edit(
         Companies $companies,
+        EntityManagerInterface $entityManagerInterface,
         CompaniesRepository $companiesRepository,
         Request $request,
-        EntityManagerInterface $entityManagerInterface,
         ): Response
         {   
         $companiesForm = $this->createForm(CompaniesType::class, $companies);
@@ -60,5 +62,19 @@ class CompaniesController extends AbstractController
         return $this->renderForm('companies/edit.html.twig', compact('companiesForm'));
     }
 
-
+    #[Route('/delete/{id}', name: '_delete', methods: ['POST'])]
+    public function delete(
+        int $id,
+        Companies $companies,
+        CompaniesRepository $companiesRepository,
+        Request $request,
+        EntityManagerInterface $entityManagerInterface,
+        ): Response
+        {   
+            $companie = $companiesRepository->find(id: $id);
+            $entityManagerInterface->remove($companie);
+            $entityManagerInterface->flush();
+        
+        return $this->redirectToRoute('companies/edit.html.twig');
+        }
 }

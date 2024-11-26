@@ -66,7 +66,7 @@ class InterventionController extends AbstractController
         EntityManagerInterface $entityManager
         ): Response
     {
-        $intervention = $interventionRepository->find($id);
+        $intervention = $interventionRepository->find(id: $id);
 
         if (!$intervention) {
             throw $this->createNotFoundException("L'intervention avec l'id $id n'existe pas.");
@@ -74,7 +74,7 @@ class InterventionController extends AbstractController
 
         $entityManager->remove($intervention);
         $entityManager->flush();
-        return $this->redirectToRoute('liste_intervention');
+        return $this->redirectToRoute('app_companies');
 
     }
 

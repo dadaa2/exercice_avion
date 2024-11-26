@@ -53,9 +53,6 @@
         <form method="post" action="{{ path('intervention_update', {'id': intervention.id}) }}">
 
             <label for="type{{ intervention.id }}" class="form-label">Type d'intervention</label>
-            
-            </select>
-
 
             <label for="dateDebut{{ intervention.id }}" class="form-label">Date de début</label>
             <input type="datetime-local" class="form-control" id="dateFin{{ intervention.id }}" name="DateDebut" 
@@ -70,11 +67,7 @@
             
         </form>
     
-    
-    
     </div>
-
-
 
 </div>
 {% endblock %}
