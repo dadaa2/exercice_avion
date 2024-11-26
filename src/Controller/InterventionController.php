@@ -23,7 +23,7 @@ class InterventionController extends AbstractController
     }
 
     // Page pour toute les interventions
-    #[Route('/liste-intervention', name: 'liste_interventions')]
+    #[Route('/liste-intervention', name: 'liste_intervention')]
     public function liste(
         InterventionRepository $interventionRepository, 
         AvionRepository $avionRepository
@@ -88,7 +88,7 @@ class InterventionController extends AbstractController
 
         $entityManager->remove($intervention);
         $entityManager->flush();
-        return $this->redirectToRoute('/liste-intervention');
+        return $this->redirectToRoute('liste_intervention');
 
     }
 
