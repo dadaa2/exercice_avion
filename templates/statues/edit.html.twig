@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Statues{% endblock %}
+
+{% block body %}
+    <h1>Edit Statues</h1>
+
+    {{ include('statues/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_statues_index') }}">back to list</a>
+
+    {{ include('statues/_delete_form.html.twig') }}
+{% endblock %}

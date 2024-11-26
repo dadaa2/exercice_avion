@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statues{% endblock %}
+
+{% block body %}
+    <h1>Statues</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ statue.id }}</td>
+            </tr>
+            <tr>
+                <th>StatueNom</th>
+                <td>{{ statue.statueNom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_statues_index') }}">back to list</a>
+
+    <a href="{{ path('app_statues_edit', {'id': statue.id}) }}">edit</a>
+
+    {{ include('statues/_delete_form.html.twig') }}
+{% endblock %}
