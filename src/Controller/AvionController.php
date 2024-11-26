@@ -41,7 +41,7 @@ class AvionController extends AbstractController
         
         $ajoutInterventionForm->handleRequest($request);
         if ($ajoutInterventionForm->isSubmitted() && $ajoutInterventionForm->isValid()) {
-            $ajoutIntervention->setInterventionDateCreation(new \DateTime());
+            $ajoutIntervention->setInterventionDateCreation(InterventionDateCreation: new \DateTime());
 
             try {
                 $em->persist($ajoutIntervention);
