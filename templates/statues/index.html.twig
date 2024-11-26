@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Statues {% endblock %}
+
+{% block body %}
+<main class="container">
+    <h1>Les statues</h1>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id de la statue</th>
+                    <th>Nom de la statue</th>
+                </tr>
+            </thead>
+            {% for statue in statues %}
+                <tbody>
+                    <td>{{ statue.Id }}</td>
+                    <td>{{ statue.statueNom }}</td>
+                </tbody>
+            
+            {% endfor %}
+            </table>
+    </div>
+
+</main>
+
+
+{% endblock %}
