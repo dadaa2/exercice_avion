@@ -18,21 +18,20 @@
                 </div>
                 <div class="col-md-8">
                     <h4>Création de l'intervention</h4>
-                    <p>{{ intervention.interventionDateCreation|date('d/m/Y')}}</p>
+                    <p>{{ intervention.interventionDateCreation|date('d/m/Y H:m:s')}}</p>
                 </div>
             </div>
-
         </div>
 
         <div class="card-body">
             <div class="row mb-3">
                 <div class=" col-md-4">
                     <h4>Début de l'intervention</h4>
-                    <p>{{ intervention.interventionDateDebut|date('d/m/Y') }}
+                    <p>{{ intervention.interventionDateDebut|date('d/m/Y H:m:s') }}
                 </div>
                 <div class=" col-md-4">
                     <h4>Fin de l'intervention</h4>
-                    <p>{{ intervention.interventionDateFin|date('d/m/Y') }}
+                    <p>{{ intervention.interventionDateFin|date('d/m/Y H:m:s') }}
                 </div>
                 <div class=" col-md-4">
                     <h4>Type d'intervention</h4>
@@ -46,6 +45,36 @@
             </form>
         </div>
     </div>
+
+
+    {# Partie pour la modification de l'intervention #}
+    <div class="">
+        <h2>Modifier l'intervention</h2>
+        <form method="post" action="{{ path('intervention_update', {'id': intervention.id}) }}">
+
+            <label for="type{{ intervention.id }}" class="form-label">Type d'intervention</label>
+            
+            </select>
+
+
+            <label for="dateDebut{{ intervention.id }}" class="form-label">Date de début</label>
+            <input type="datetime-local" class="form-control" id="dateFin{{ intervention.id }}" name="DateDebut" 
+            value="{{ intervention.interventionDateDebut|date('Y-m-d\\TH:i') }}">        
+            
+            <label for="dateDebut{{ intervention.id }}" class="form-label">Date de fin</label>
+            <input type="datetime-local" class="form-control" id="dateFin{{ intervention.id }}" name="DateFin" 
+            value="{{ intervention.interventionDateFin|date('Y-m-d\\TH:i') }}">     
+            
+            <textarea name="interventionCommentaire">{{ intervention.interventionCommentaire }}</textarea>
+            <button type="submit">Enregistrer les modifications</button>
+            
+        </form>
+    
+    
+    
+    </div>
+
+
 
 </div>
 {% endblock %}

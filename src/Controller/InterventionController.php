@@ -54,20 +54,6 @@ class InterventionController extends AbstractController
             throw $this->createNotFoundException("Cette intervention n'existe pas");
         }
 
-        if ($request->isMethod("POST")) {
-            $intervention->setInterventionDateDebut
-            (new \DateTime($request->request->get ('date_debut')));
-            $intervention->setInterventionDateFin
-            (new \DateTime($request->request->get ('date_fin')));
-            $intervention->setInterventionType
-            ($request->request->get('type'));
-            $intervention->setInterventionCommentaire
-            ($request->request->get('commentaire'));
-            
-            $em -> flush();
-            return $this->redirectToRoute('intervention/{id}');
-        }
-
         return $this->render("intervention/interventionDetail.html.twig", [
             'intervention'=>$intervention
         ]);
@@ -91,5 +77,32 @@ class InterventionController extends AbstractController
         return $this->redirectToRoute('liste_intervention');
 
     }
+
+    #[Route('/intervention/{id}/update', name: 'intervention_update', methods: ['POST'])]
+    public function update(
+        int $id, 
+        Request $request,
+        InterventionRepository $interventionRepository, 
+        EntityManagerInterface $entityManager
+        ): Response
+    {
+        $intervention = $interventionRepository->find($id);
+
+        if (!$intervention) {
+            throw $this->createNotFoundException("L'intervention avec l'id $id n'existe pas.");
+        }
+
+
+        $intervention->setInterventionType("15");
+        $intervention->setInterventionDateDebut(    );
+        $intervention->setInterventionDateFin(      );
+        $intervention->setInterventionCommentaire( );
+        $entityManager->flush();
+        return $this->redirectToRoute('liste_intervention');
+
+    }
+
+
+
 
 }
