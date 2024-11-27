@@ -3,18 +3,15 @@
 {% block title %}Edit Statues{% endblock %}
 
 {% block body %}
-<h1>Edit Statues</h1>
 <div class="container">
+    <h1>Edit Statues</h1>
 
-    <div class="form-group">
-        
-        <div class="form-control">
-            {{ include('statues/_form.html.twig', {'button_label': 'Update'}) }}
-        </div>
-        
-        <a href="{{ path('app_statues_index') }}">back to list</a>
-        
-        {{ include('statues/_delete_form.html.twig') }}
+    <div class="form-control">
+        {{ include('statues/_form.html.twig', {'button_label': 'Update'}) }}
     </div>
+
+    <a href="{{ path('app_statues_index') }}">back to list</a>
+
+    {{ include('statues/_delete_form.html.twig') }}
 </div>
 {% endblock %}
