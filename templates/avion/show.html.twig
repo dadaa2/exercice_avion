@@ -3,20 +3,27 @@
 {% block title %}Avion{% endblock %}
 
 {% block body %}
-    <h1>Avion</h1>
+<div class="container">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Immatriculation</th>
-                <td>{{ avion.immatriculation }}</td>
-            </tr>
-        </tbody>
-    </table>
+  <h1>Avion</h1>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Immatriculation</th>
+        <td>{{ avion.immatriculation }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center">
 
     <a href="{{ path('app_avion_index') }}">back to list</a>
-
+    
     <a href="{{ path('app_avion_edit', {'immatriculation': avion.immatriculation}) }}">edit</a>
-
+    
     {{ include('avion/_delete_form.html.twig') }}
+  </div>
+  </table>
+</div>
 {% endblock %}

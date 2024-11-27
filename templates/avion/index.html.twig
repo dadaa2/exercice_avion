@@ -34,6 +34,10 @@
         </tbody>
     </table>
 </div>
-
+<div class="navigation">
+    <div class="center">
+        {{ knp_pagination_render(avions) }}
+    </div>
+</div>
 <a href="{{ path('app_avion_new') }}">Create new</a>
 {% endblock %}
