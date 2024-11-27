@@ -17,15 +17,15 @@ final class AvionController extends AbstractController
 {
     #[Route(name: 'app_avion_index', methods: ['GET'])]
     public function index(
-        AvionRepository $avionRepository, 
+        AvionRepository $avionRepository,
         PaginatorInterface $paginator,
         Request $request,
-    ): Response
-    {
+    ): Response {
         $avions = $paginator->paginate(
             $avionRepository->findAll(),
-            $request->query->getInt('page', 1),
-            10 );
+            $request->query->getInt('page', 1),15,[
+                'defaultSortDirection' => 'asc',    
+            ]);
 
 
         return $this->render('avion/index.html.twig', [
@@ -82,7 +82,7 @@ final class AvionController extends AbstractController
     #[Route('/{immatriculation}', name: 'app_avion_delete', methods: ['POST'])]
     public function delete(Request $request, Avion $avion, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$avion->getImmatriculation(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $avion->getImmatriculation(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($avion);
             $entityManager->flush();
         }
