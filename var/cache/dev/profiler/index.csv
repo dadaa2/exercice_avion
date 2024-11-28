@@ -3569,3 +3569,15 @@ c8391a,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=asc&page=1&sort=avion
 4b624f,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=desc&page=1&sort=avions.immatriculation,1732717933,,200,request
 8930cb,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=desc&page=1&sort=avions.immatriculation,1732718043,,200,request
 feab96,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=desc&page=1&sort=avions.immatriculation,1732718075,,200,request
+d730cc,127.0.0.1,GET,http://127.0.0.1:8000/avion,1732803562,,200,request
+a3e66d,127.0.0.1,GET,http://127.0.0.1:8000/avion,1732803564,,200,request
+a3b0ac,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=asc&page=1&sort=avions.immatriculation,1732803568,,200,request
+f972a9,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=desc&page=1&sort=avions.immatriculation,1732803570,,200,request
+18427b,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=desc&page=1&sort=avions.immatriculation,1732803582,,200,request
+c87a87,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=desc&page=1&sort=immatriculation,1732803584,,200,request
+c20fe7,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=asc&page=1&sort=immatriculation,1732803584,,200,request
+ee17bf,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=asc&page=1&sort=immatriculation,1732803592,,200,request
+a77e89,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=asc&page=1&sort=AvionCompanie.CompanieNom,1732803595,,200,request
+719b61,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=desc&page=1&sort=AvionCompanie.CompanieNom,1732803595,,200,request
+ea2154,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=asc&page=1&sort=AvionCompanie.CompanieNom,1732803596,,200,request
+7e8fea,127.0.0.1,GET,http://127.0.0.1:8000/avion?direction=asc&page=1&sort=immatriculation,1732803597,,200,request

@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th{% if avions.isSorted('avions.immatriculation') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(avions, 'Immatriculation', 'avions.immatriculation') }}
+                    {{ knp_pagination_sortable(avions, 'Immatriculation', 'immatriculation') }}
                 </th>
                 {#
                 <th>
@@ -18,7 +18,7 @@
                     </th>
                     #}
                 <th>
-                    {{ knp_pagination_sortable(avions, 'Compagnie', 'avions.Companie') }}
+                    {{ knp_pagination_sortable(avions, 'Compagnie', 'AvionCompanie.CompanieNom') }}
                 </th> 
                 <th>actions</th>
             </tr>
