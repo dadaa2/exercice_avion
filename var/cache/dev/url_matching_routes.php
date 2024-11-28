@@ -21,6 +21,7 @@ return [
         '/' => [[['_route' => 'app_intervention', '_controller' => 'App\\Controller\\InterventionController::index'], null, null, null, false, false, null]],
         '/liste-intervention' => [[['_route' => 'liste_intervention', '_controller' => 'App\\Controller\\InterventionController::liste'], null, null, null, false, false, null]],
         '/main' => [[['_route' => 'app_main', '_controller' => 'App\\Controller\\MainController::index'], null, null, null, false, false, null]],
+        '/search' => [[['_route' => 'app_search', '_controller' => 'App\\Controller\\SearchController::index'], null, null, null, false, false, null]],
         '/statues' => [[['_route' => 'app_statues_index', '_controller' => 'App\\Controller\\StatuesController::index'], null, ['GET' => 0], null, false, false, null]],
         '/statues/new' => [[['_route' => 'app_statues_new', '_controller' => 'App\\Controller\\StatuesController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],

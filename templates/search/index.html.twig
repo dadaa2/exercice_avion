@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Recherche d'avion {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Recherche d'avion</h1>
+    {{ include('search/_form.html.twig', {'button_label': 'Rechercher'}) }}
+
+
+</div>
+{% endblock %}
