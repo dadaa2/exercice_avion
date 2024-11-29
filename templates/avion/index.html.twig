@@ -12,11 +12,6 @@
                 <th{% if avions.isSorted('avions.immatriculation') %} class="sorted"{% endif %}>
                     {{ knp_pagination_sortable(avions, 'Immatriculation', 'immatriculation') }}
                 </th>
-                {#
-                <th>
-                        {{ knp_pagination_sortable(avions, 'Immatriculation', 'avions.immatriculation') }}
-                    </th>
-                    #}
                 <th>
                     {{ knp_pagination_sortable(avions, 'Compagnie', 'AvionCompanie.CompanieNom') }}
                 </th> 

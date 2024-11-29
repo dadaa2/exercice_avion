@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Avion;
 use App\Repository\AvionRepository;
 use App\Form\AvionSearchType;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +21,10 @@ class SearchController extends AbstractController
         Request $request,
         PaginatorInterface $paginator,
         AvionRepository $avionRepository,
+        EntityManagerInterface $em
         
     ): Response
     {
-
         $avion = new Avion();
         $form = $this->createForm(AvionSearchType::class, $avion);
         $form->handleRequest($request);
@@ -32,21 +33,33 @@ class SearchController extends AbstractController
         $companie = $form->get('AvionCompanie')->getData();
         $statue = $form->get('AvionStatue')->getData();
         
+        $qb = $em->createQueryBuilder();
+       
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form, $immatriculation, $companie, $statue);
-            //return $this->redirectToRoute('app_avion_index', [], Response::HTTP_SEE_OTHER);
+            //dd($immatriculation );
+            $qb->select('*')
+            ->from('Avion','a')
+            ->where('a.immatriculation = '."'". $immatriculation ."'");
+            $query = $qb->getQuery();
+
+            dd($qb, $query);
+            return $query->execute();
+            //$avions = $avionRepository->findBy([
+            //    'immatriculation' => $immatriculation,
+            //    'form' => $form->createview()]);
+            //    //'company' => $companie,
+            //    //'status' => $status, 
+            //    return $this->redirectToRoute('app_search', [], Response::HTTP_SEE_OTHER);
+            //;
         }
-
-        //$avions = $avionRepository->findBy([
-        //    'immatriculation'=> $immatriculation,
-        //    'company'=> $companie,
-        //]);
-
         return $this->render('search/index.html.twig', [
             'form' => $form,
-
         ]);
     }
+
+//SELECT * FROM avion WHERE immatriculation LIKE '%AM%' 
+//LEFT JOIN companies on avions.avion_companie_id = companie.id
 
     #[Route('/result', name: 'app_search_result')]
     public function show(

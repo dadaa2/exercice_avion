@@ -6,61 +6,7 @@
 <div class="container">
     <h1>Recherche d'avion</h1>
     {{ include('search/_form.html.twig', {'button_label': 'Rechercher'}) }}
-
-
-    <div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Immatriculation
-                    {#
-                    {% if avions.isSorted('avions.immatriculation') %} class="sorted"{% endif %}>
-                        {{ knp_pagination_sortable(avions, 'Immatriculation', 'immatriculation') }}
-                        #}
-                    </th>
-                    <th>Companie
-                        {#
-                            {{ knp_pagination_sortable(avions, 'Immatriculation', 'avions.immatriculation') }}
-                            #}
-                    </th>
-                    <th>
-                        {#
-                            {{ knp_pagination_sortable(avions, 'Compagnie', 'AvionCompanie.CompanieNom') }}
-                            #}
-                    </th> 
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#
-                    {% for avion in avions %}
-                    #}
-                <tr>
-                    <td>avion immatriculation exemple
-                            {#{{ avion.immatriculation }}#}
-                    </td>
-                    <td>avion companie exemple
-                    {# {{ avion.AvionCompanie.CompanieNom }} #}
-                    <td>
-                    </td>
-                        {#
-                            <a href="{{ path('app_avion_show', {'immatriculation': avion.immatriculation}) }}">show</a>
-                            <a href="{{ path('app_avion_edit', {'immatriculation': avion.immatriculation}) }}">edit</a>
-                        #}
-                    </td>
-                </tr>
-                {#
-                {% else %}
-                <tr>
-                    <td colspan="2">no records found</td>
-                </tr>
-                    {% endfor %}
-                    #}
-            </tbody>
-        </table>
-
-
+    {{ include('search/_show.html.twig') }}
     </div>
-
 </div>
 {% endblock %}
