@@ -15,18 +15,25 @@ class AvionSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        
             ->add('immatriculation', options:[
                 'attr' => ['class' => 'form-control'],
+                'required' => false,
             ])
             ->add('AvionCompanie', EntityType::class, [
                 'class' => Companies::class,
                 'choice_label' => 'companieNom',
                 'attr' => ['class' => 'form-control'],
+                'required' => false,
+                'placeholder' => 'Toutes les compagnies',
+
             ])
             ->add('AvionStatue', EntityType::class, [
                 'class' => Statues::class,
                 'choice_label' => 'statueNom',
                 'attr' => ['class' => 'form-control'],
+                'required' => false,
+                'placeholder' => 'Tout type de status',
             ])
         ;
     }
