@@ -26,11 +26,16 @@ class SearchController extends AbstractController
         $form = $this->createForm(AvionType::class, $avion);
         $form->handleRequest($request);
 
-
-        //$avions = $paginator->paginate(
-        //    $avionRepository->findAll(), // parametre à mettre pour find, crée par la form
-        //    $request->query->getInt('page', 1),15);
-
+        if ($form->isSubmitted() && $form->isValid()) {    
+            $avions = $paginator->paginate(
+                $avion->findBy([
+                    'immatriculation'=> '',
+                    'companie'=> ''
+                    ]
+                ), // parametre à mettre pour find, crée par la form
+                $request->query->getInt('page', 1),15);
+        }
+ // lier l'entité avion avec avion repository pour que paginator le trouve 
         return $this->render('search/index.html.twig', [
             'form' => $form,
         ]);
