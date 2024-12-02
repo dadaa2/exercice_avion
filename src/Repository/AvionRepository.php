@@ -40,4 +40,16 @@ class AvionRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+//
+
+    public function findAvionSearch($immatriculation): array 
+    {
+        return $this->createQueryBuilder('a')
+            ->where("a.immatriculation = :immatriculation")
+            ->setParameter("immatriculation", $immatriculation)
+            //->setParameter('a.immatriculation = '."'". $immatriculation ."'", $immatriculation)
+            ->getQuery()
+            ->getResult()        
+        ;
+    }
 }

@@ -5,12 +5,10 @@ namespace App\Form;
 use App\Entity\Avion;
 use App\Entity\Companies;
 use App\Entity\Statues;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Doctrine\ORM\EntityManagerInterface;
 
 class AvionSearchType extends AbstractType
 {
@@ -50,6 +48,7 @@ class AvionSearchType extends AbstractType
             'method' => 'GET',
         ]);
     }
+    
     
     /*
     public function search($immatriculation, $companie, $statue, EntityManagerInterface $em): array

@@ -33,18 +33,21 @@ class SearchController extends AbstractController
         $companie = $form->get('AvionCompanie')->getData();
         $statue = $form->get('AvionStatue')->getData();
         
-        $qb = $em->createQueryBuilder();
-       
         
         if ($form->isSubmitted() && $form->isValid()) {
-            //dd($immatriculation );
-            $qb->select('*')
-            ->from('Avion','a')
-            ->where('a.immatriculation = '."'". $immatriculation ."'");
-            $query = $qb->getQuery();
+            
+            $immatriculations = $avionRepository->findAvionSearch($immatriculation);
+            dd($immatriculations);
+            
+            //$avion = $em->getRepository(Avion::class)->findAvionSearch($immatriculation);
+            //$qb->select('*')
+            //$qb->$this->createQueryBuilder('a')
+            //->from('Avion','a')
+            //->where('a.immatriculation = '."'". $immatriculation ."'");
+            //$query = $qb->getQuery();
 
-            dd($qb, $query);
-            return $query->execute();
+            //dd( $query);
+            //return $query->execute();
             //$avions = $avionRepository->findBy([
             //    'immatriculation' => $immatriculation,
             //    'form' => $form->createview()]);
