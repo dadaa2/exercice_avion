@@ -48,44 +48,4 @@ class AvionSearchType extends AbstractType
             'method' => 'GET',
         ]);
     }
-    
-    
-    /*
-    public function search($immatriculation, $companie, $statue, EntityManagerInterface $em): array
-    {
-        //$entityManager =  $this->getEntityManager();
-        $dqlimmatriculation = "";
-        $dqlcompanie = "";
-        $dqlstatue = "";
-        
-        if($immatriculation == null) {
-            return $dqlimmatriculation == '';
-        }else{
-            return $dqlimmatriculation = "WHERE a.immatriculation : LIKE %'$immatriculation'%";
-    }
-    if ($companie === "Toutes les compagnies") {
-            return $dqlcompanie = '';
-        }else{
-            return $dqlcompanie = 'INNER JOIN a.immatriculation ON Companies = companies.nom';
-    }
-    if ($statue === "Tout type de status"){
-        return $dqlstatue = '';
-    } else {
-        return $sqlstatue == 'INNER JOIN a.immatriculation ON Statues = Statues.nom';
-}
-
-$query = $em->createQuery(
-    "SELECT *
-    FROM App\Entity\Avion a
-    immatriculation
-    companie
-    statue
-    ")
-    ->setParameter(['immatriculation', $immatriculation],
-    ['companie', $dqlcompanie],
-    ['status=e', $dtatue]);
-    
-    return $query->getResult();
-}
-*/
 }

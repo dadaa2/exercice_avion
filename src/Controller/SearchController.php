@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/search')]
 class SearchController extends AbstractController
 {
-    // lier l'entité avion avec avion repository pour que paginator le trouve  ??
+    // lier l'entité avion avec avion repository pour que paginator le trouve
     #[Route(name: 'app_search')]
     public function index(
         Request $request,
@@ -28,16 +28,14 @@ class SearchController extends AbstractController
         $avion = new Avion();
         $form = $this->createForm(AvionSearchType::class, $avion);
         $form->handleRequest($request);
-        //Lier à une form 
-        $immatriculation = $form->get('immatriculation')->getData();
-        $companie = $form->get('AvionCompanie')->getData();
-        $statue = $form->get('AvionStatue')->getData();
-        $avions = null;
+        //Lier à une form
+        $avions = $form->getData();
+        
         
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $avions = $avionRepository->findAvionSearch($immatriculation);
             //dd( $avions);
+            $avions = $avionRepository->findSpecificAvion($avions);
 
             //$qb->select('*')
             //$qb->$this->createQueryBuilder('a')
@@ -61,6 +59,7 @@ class SearchController extends AbstractController
         ]);
     }
 
+
 //SELECT * FROM avion WHERE immatriculation LIKE '%AM%' 
 //LEFT JOIN companies on avions.avion_companie_id = companie.id
 
@@ -74,10 +73,6 @@ class SearchController extends AbstractController
     {
 
         return $this->render('search/index.html.twig', [
-
         ]);
     }
-
-
-
 }
