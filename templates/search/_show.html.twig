@@ -8,14 +8,22 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <td>immatriculation</td>
+        <td>Immatriculation</td>
         <td>Compagnie</td>
+        <td>Status</td>
       </tr>
     </thead>
     <tbody>
-      <tr>
-       
-      </tr>
+      {% if avions is not null %}
+          {% for avion in avions %}
+            <tr>
+              <td> {{ avion.immatriculation }} </td>
+              <td> {{ avion.AvionCompanie.CompanieNom }} </td>
+              <td> {{ avion.AvionStatue.StatueNom }} </td>
+            </tr>
+          {% endfor %}
+      {% else %}
+      {% endif %}
     </tbody>
   </table>
 

@@ -32,14 +32,13 @@ class SearchController extends AbstractController
         $immatriculation = $form->get('immatriculation')->getData();
         $companie = $form->get('AvionCompanie')->getData();
         $statue = $form->get('AvionStatue')->getData();
-        
+        $avions = null;
         
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $immatriculations = $avionRepository->findAvionSearch($immatriculation);
-            dd($immatriculations);
-            
-            //$avion = $em->getRepository(Avion::class)->findAvionSearch($immatriculation);
+            $avions = $avionRepository->findAvionSearch($immatriculation);
+            //dd( $avions);
+
             //$qb->select('*')
             //$qb->$this->createQueryBuilder('a')
             //->from('Avion','a')
@@ -58,6 +57,7 @@ class SearchController extends AbstractController
         }
         return $this->render('search/index.html.twig', [
             'form' => $form,
+            'avions' => $avions
         ]);
     }
 

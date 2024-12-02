@@ -44,12 +44,12 @@ class AvionRepository extends ServiceEntityRepository
 
     public function findAvionSearch($immatriculation): array 
     {
+
         return $this->createQueryBuilder('a')
-            ->where("a.immatriculation = :immatriculation")
-            ->setParameter("immatriculation", $immatriculation)
-            //->setParameter('a.immatriculation = '."'". $immatriculation ."'", $immatriculation)
+            ->where("a.immatriculation LIKE :immatriculation")
+            ->setParameter("immatriculation", '%'.$immatriculation.'%')
             ->getQuery()
-            ->getResult()        
+            ->getResult()
         ;
     }
 }
