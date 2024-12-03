@@ -57,7 +57,6 @@ class AvionRepository extends ServiceEntityRepository
     public function findSpecificAvion($form): array
     {
         $immatriculation = $form->getImmatriculation();
-        $statue = $form->getAvionStatue();
         
         $companie = $form->getAvionCompanie();
         if ($companie != null){
@@ -66,13 +65,22 @@ class AvionRepository extends ServiceEntityRepository
             $companie = "";
         }
 
+
+
+
         return $this->createQueryBuilder('a')
-            ->andwhere("a.immatriculation LIKE :immatriculation")
+            ->andwhere("a.immatriculation LIKE :immatriculation OR c.companieNom LIKE :immatriculation")
             ->setParameter("immatriculation", '%'.$immatriculation.'%')
-            
+
+            //->andWhere("c.companieNom LIKE :immatriculation")
             ->innerJoin("a.AvionCompanie", "c")
-            ->andWhere("c.companieNom LIKE :companie")
-            ->setParameter("companie", '%'.$companie.'%')
+            
+            
+            //->innerJoin("a.AvionCompanie", "c")
+            //->andWhere("c.companieNom LIKE :companie")
+            //->setParameter("companie", '%'.$companie.'%')
+            
+            ->orderBy("a.immatriculation","ASC")
             ->getQuery()
             ->getResult();
     }
