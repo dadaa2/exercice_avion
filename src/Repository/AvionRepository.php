@@ -57,55 +57,23 @@ class AvionRepository extends ServiceEntityRepository
     public function findSpecificAvion($form): array
     {
         $immatriculation = $form->getImmatriculation();
-        
-        //$companie = $form["AvionCompanie"]->getData();
-
-
-        $companie = $form->getAvionCompanie();
         $statue = $form->getAvionStatue();
-
-
+        
+        $companie = $form->getAvionCompanie();
         if ($companie != null){
-            return $companie = $companie->getCompanieNom();
+            $companie = $companie->getCompanieNom();
+        } else {
+            $companie = "";
         }
-        dd($form, $immatriculation, $companie, $statue);
-        
-        if ($statue != null){
-            return $statue = $statue->getStatueNom(); 
-        }
-        
-
-        //$statue = $form['AvionStatue']->getData();
-        //$statue = $statue->getStatueNom();
-        
-    
-
-        //if ($companie === "Toutes les compagnies"){
-        //        return $dqlcompanie = '';
-        //    }else{
-        //        return $dqlcompanie = 'INNER JOIN a.immatriculation ON Companies = companies.nom';
-        //}
-        //if ($statue === "Tout type de status"){
-        //    return $dqlstatue = '';
-        //} else {
-        //    return $sqlstatue == 'INNER JOIN a.immatriculation ON Staues.nomtues = Stat';
-        //}
 
         return $this->createQueryBuilder('a')
-            ->andwhere("a.immatriculation LIKE :immatriculation  ")
+            ->andwhere("a.immatriculation LIKE :immatriculation")
             ->setParameter("immatriculation", '%'.$immatriculation.'%')
             
-            ->join("avion.avionCompanie", "c")
-            ->andWhere("c.companieNom LIKE : companie ")
+            ->innerJoin("a.AvionCompanie", "c")
+            ->andWhere("c.companieNom LIKE :companie")
             ->setParameter("companie", '%'.$companie.'%')
-            
-            
-            
-            
-            //->andWhere("a.avionStatue LIKE : statue")
-            //->setParameter("statue", '%'.$statue.'%')
             ->getQuery()
             ->getResult();
     }
-    
 }

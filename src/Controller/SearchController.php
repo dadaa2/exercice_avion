@@ -34,14 +34,9 @@ class SearchController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             
+            
             //dd( $avions);
             $avions = $avionRepository->findSpecificAvion($avions);
-
-            //$qb->select('*')
-            //$qb->$this->createQueryBuilder('a')
-            //->from('Avion','a')
-            //->where('a.immatriculation = '."'". $immatriculation ."'");
-            //$query = $qb->getQuery();
 
             //dd( $query);
             //return $query->execute();
